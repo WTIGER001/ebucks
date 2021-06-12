@@ -5,8 +5,8 @@
 <div class="center-box">
     <h1>Spend Some!</h1>
     <div class="buttons">
-        <button class="but-opt"> <b>option 1</b> </button>
-        <button class="but-opt"> <b>option 2</b> </button>
-        <button class="but-opt"> <b>option 3</b> </button>
+        <button class="but-opt" *ngFor="let opt of spendOptions"> 
+            <b>{{opt.name}}</b> 
+        </button>
     </div>
 </div>
