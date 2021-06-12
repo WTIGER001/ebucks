@@ -6,11 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./timed-activity.component.css']
 })
 export class TimedActivityComponent implements OnInit {
+  resumedTime : Date | undefined
   startTime : Date | undefined
   endTime  : Date | undefined
+  resetTime : Date | undefined
   
   started : boolean = false
   running : boolean = false
+  prevTimeRunning = 0
   timeRunning  = 0 
 
   constructor() { }
@@ -18,20 +21,31 @@ export class TimedActivityComponent implements OnInit {
   ngOnInit(): void {
     setInterval( ()=> {
       this.calcRunningTime()
-    }, 10000)
+    }, 1000)
 
   }
 
   calcRunningTime() {
-      if (this.startTime == undefined) {
+    if (this.started == true)  {
+      let time : Date
+
+      if (this.resumedTime) {
+        time = this.resumedTime
+      } else if (this.startTime) {
+        time = this.startTime
+      } else {
         return
       }
 
       const current = new Date()
-      const milliseconds = current.getTime() - this.startTime.getTime()
-      const min = Math.ceil(milliseconds / 1000 / 60)
-      this.timeRunning = min
+      if(this.running == true){
+      const milliseconds = time.getTime() - current.getTime()
+      const min = Math.floor(milliseconds / 1000 )
+      this.timeRunning = min + this.prevTimeRunning
+      }
+    }
   }
+  
 
   startTimer() {
     this.started = true
@@ -41,5 +55,36 @@ export class TimedActivityComponent implements OnInit {
     // Save this to the database
   }
 
+  stopTimer() {
+    this.started = false
+    this.running = false
+    this.resetTime = new Date()
+    this.backToList()
+  }
+
+  pauseTimer() {
+    this.running = false
+    this.prevTimeRunning = this.timeRunning
+
+    
+  }
+
+    continueTimer() {
+      this.running = true
+      this.resumedTime = new Date()
+    }
+
+
+  backToList() {
+    const current = new Date()
+    if(this.resetTime == undefined){
+      return
+    }
+    if(this.running){
+      this.continueTimer()
+    } else if (current.getTime()-this.resetTime.getTime() > 5000 ){
+      
+    }
+  }
 
 }
