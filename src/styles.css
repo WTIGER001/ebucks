@@ -1,13 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
-
+    --ebuck-grey : #595959;
+    --ebuck-white: white;
+    --ebuck-black: black;
+    --ebuck-lt-grey: #dfdfdf;
 }
 
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
 }
 
 .page {
@@ -18,4 +22,32 @@
     width: 100vw;   
     display: flex;
     flex-direction: column;
+}
+
+.avatar {
+    border-radius: 1000px;
+    border: 7px solid var(--ebuck-grey);
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    filter: drop-shadow(2px 2px 4px rgb(0,0,0,.7));
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+}
+
+.btn-std{
+    border: 2px solid var(--ebuck-black);
+    padding: .5em 1em;
+    background-color: var(--ebuck-white);
+    color: var(--ebuck-black);
+    font-size: 2rem;
+    border-radius: 11px;
+    filter: drop-shadow(2px 2px 4px rgb(0,0,0,.7));
+}
+
+.btn-std:hover{
+    background-color: var(--ebuck-lt-grey);
 }
