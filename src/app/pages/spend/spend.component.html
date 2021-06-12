@@ -5,7 +5,7 @@
 <div class="center-box">
     <h1>Spend Some!</h1>
     <div class="buttons">
-        <button class="but-opt" *ngFor="let opt of spendOptions"> 
+        <button class="but-opt" *ngFor="let opt of spendOptions" [routerLink]="opt.id">
             <b>{{opt.name}}</b> 
         </button>
     </div>

@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { WelcomComponent } from './pages/welcom/welcom.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SpendComponent } from './pages/spend/spend.component';
+import { TimedActivityComponent } from './pages/timed-activity/timed-activity.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomComponent,
     HomeComponent,
-    SpendComponent
+    SpendComponent,
+    TimedActivityComponent
   ],
   imports: [
     BrowserModule,
