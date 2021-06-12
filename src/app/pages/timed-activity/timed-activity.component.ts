@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-timed-activity',
   templateUrl: './timed-activity.component.html',
   styleUrls: ['./timed-activity.component.css']
 })
-export class TimedActivityComponent implements OnInit {
+export class TimedActivityComponent implements OnInit, OnDestroy {
   resumedTime : Date | undefined
   startTime : Date | undefined
   endTime  : Date | undefined
@@ -16,13 +17,16 @@ export class TimedActivityComponent implements OnInit {
   prevTimeRunning = 0
   timeRunning  = 0 
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit(): void {
     setInterval( ()=> {
       this.calcRunningTime()
     }, 1000)
+  }
 
+  ngOnDestroy()  {
+    clearInterval()
   }
 
   calcRunningTime() {
@@ -76,15 +80,7 @@ export class TimedActivityComponent implements OnInit {
 
 
   backToList() {
-    const current = new Date()
-    if(this.resetTime == undefined){
-      return
-    }
-    if(this.running){
-      this.continueTimer()
-    } else if (current.getTime()-this.resetTime.getTime() > 5000 ){
-      
-    }
+      this.router.navigate([''])
   }
 
 }
