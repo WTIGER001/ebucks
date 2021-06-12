@@ -1,6 +1,20 @@
-<p>{{timeRunning}}</p>
 
+<div class = "red-circle">
+    <b>{{timeRunning}}</b>
+</div>
 
 <button class="btn-std" *ngIf="started == false && running == false" (click)="startTimer()">
     Start
+</button>
+
+<button class="btn-std" *ngIf="started == true" (click)="stopTimer()">
+    Stop
+</button>
+
+<button class="btn-std" *ngIf="started == true && running == true" (click)="pauseTimer()">
+    Pause
+</button>
+
+<button class="btn-std" *ngIf="started == true && running == false" (click)="continueTimer()">
+    Continue
 </button>
